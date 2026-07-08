@@ -209,7 +209,8 @@ GROUP BY year, month;
 
 **Output**
 
-<img width="555" height="83" alt="image" src="https://github.com/user-attachments/assets/c0a2889c-b926-480b-92a7-9ed66cab52ad" />
+<img width="454" height="453" alt="image" src="https://github.com/user-attachments/assets/c96d4a6e-b522-4f67-a9ac-da27155869d2" />
+
 
 
 ---
@@ -227,10 +228,11 @@ LIMIT 5;
 ```
 
 **Output**
+<img width="568" height="451" alt="image" src="https://github.com/user-attachments/assets/5e762cff-d1ee-4d3c-b885-9261bc1ad72d" />
 
-<img width="618" height="75" alt="image" src="https://github.com/user-attachments/assets/37205ea6-5f88-49d7-9ae4-3907813f3786" />
 
----## Query 11: Best-Selling Category
+---
+## Query 11: Best-Selling Category
 
 **SQL Query**
 
@@ -243,10 +245,10 @@ GROUP BY category;
 
 **Output**
 
-<img width="449" height="77" alt="image" src="https://github.com/user-attachments/assets/4f1ba77f-8894-4685-917b-0afb862bf241" />
+<img width="651" height="444" alt="image" src="https://github.com/user-attachments/assets/87184792-5bcc-433e-82e0-6714bd174f2f" />
 
-
----## Query 12: create each shift and number of orders
+---
+## Query 12: create each shift and number of orders
 
 **SQL Query**
 
@@ -263,8 +265,7 @@ GROUP BY Shift;
 ```
 
 **Output**
-
-<img width="769" height="77" alt="image" src="https://github.com/user-attachments/assets/31c1f134-ad1c-4b50-9b22-875badfc267d" />
+<img width="1324" height="330" alt="image" src="https://github.com/user-attachments/assets/10e7cc01-d554-4102-aff2-d68a04bdffcd" />
 
 ---
 
