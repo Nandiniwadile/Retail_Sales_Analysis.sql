@@ -140,7 +140,8 @@ FROM retail_salesGROUP BY category;
 
 **Output**
 
-<img width="576" height="87" alt="image" src="https://github.com/user-attachments/assets/9dcc28d0-12e0-4b5d-b392-b03d45989e11" />
+<img width="868" height="275" alt="image" src="https://github.com/user-attachments/assets/d3fe7e86-2344-4c8a-96ff-7269bf10144f" />
+
 
 ---
 
