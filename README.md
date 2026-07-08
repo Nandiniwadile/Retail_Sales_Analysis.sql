@@ -69,7 +69,8 @@ SELECT * FROM retail_sales;
 
 **Output**
 
-![Query 1 Output](screenshots/query1_output.png)
+<img width="876" height="453" alt="image" src="https://github.com/user-attachments/assets/4b1492ef-b338-407b-ba6e-a2d7bceb6733" />
+
 
 ---
 
@@ -92,7 +93,8 @@ WHERE sale_date IS NULL
 
 **Output**
 
-![Query 2 Output](screenshots/query2_output.png)
+<img width="877" height="452" alt="image" src="https://github.com/user-attachments/assets/48a80dd3-6ffb-47c7-9d8f-0d1dd3b16a31" />
+
 
 ---
 
@@ -106,8 +108,7 @@ WHERE sale_date='2022-11-05';
 ```
 
 **Output**
-
-![Query 3 Output](screenshots/query3_output.png)
+<img width="900" height="191" alt="image" src="https://github.com/user-attachments/assets/747bcba2-4e37-4aac-910b-490aec9e80e0" />
 
 ---
 
@@ -115,17 +116,15 @@ WHERE sale_date='2022-11-05';
 
 **SQL Query**
 ```sql
-SELECT *
-FROM retail_sales
-WHERE category='Clothing'
-AND quantity>=4
-AND YEAR(sale_date)=2022
-AND MONTH(sale_date)=11;
+SELECT * FROM retail_sales
+WHERE category ='clothing' AND DATE_FORMAT(sale_date, '%Y-%m')='2022-11’ 
+AND quantity >= 4;
+
 ```
 
 **Output**
 
-![Query 4 Output](screenshots/query4_output.png)
+<img width="900" height="212" alt="image" src="https://github.com/user-attachments/assets/9613d697-08fd-431b-afa7-fc7779842e60" />
 
 ---
 
@@ -133,17 +132,15 @@ AND MONTH(sale_date)=11;
 
 **SQL Query**
 ```sql
-SELECT
-category,
-SUM(total_sale) AS total_sales,
-COUNT(*) AS total_orders
-FROM retail_sales
-GROUP BY category;
+SELECT category, 
+SUM(total_sale) as net_sale, COUNT(*) AS total_orders
+FROM retail_salesGROUP BY category;
+
 ```
 
 **Output**
 
-![Query 5 Output](screenshots/query5_output.png)
+<img width="576" height="87" alt="image" src="https://github.com/user-attachments/assets/9dcc28d0-12e0-4b5d-b392-b03d45989e11" />
 
 ---
 
@@ -151,15 +148,16 @@ GROUP BY category;
 
 **SQL Query**
 ```sql
-SELECT
-ROUND(AVG(age),2) AS average_age
+SELECT AVG(age) AS avg_age
 FROM retail_sales
-WHERE category='Beauty';
+WHERE category = 'Beauty';
+
 ```
 
 **Output**
 
-![Query 6 Output](screenshots/query6_output.png)
+<img width="900" height="133" alt="image" src="https://github.com/user-attachments/assets/559b7550-72df-4c64-8bc7-342607edd528" />
+
 
 ---
 
@@ -174,46 +172,98 @@ WHERE total_sale>1000;
 
 **Output**
 
-![Query 7 Output](screenshots/query7_output.png)
+<img width="764" height="396" alt="image" src="https://github.com/user-attachments/assets/ee43f178-61e7-4752-90f1-d845e8398c28" />
 
 ---
 
-## Query 8: Top 5 Customers by Total Sales
+## Query 8: Transactions by Gender & Category
 
 **SQL Query**
 ```sql
-SELECT
-customer_id,
-SUM(total_sale) AS total_sales
+SELECT category, gender, COUNT(*) AS total_trans 
+FROM retail_sales 
+GROUP BY category, gender
+ORDER BY category;
+
+```
+
+**Output**
+
+<img width="1052" height="332" alt="image" src="https://github.com/user-attachments/assets/d5f021ff-2afe-4114-9053-539ade8efb1b" />
+
+
+---
+
+## Query 9: Average Sales per Month
+
+**SQL Query**
+
+```sql
+SELECT 
+EXTRACT(YEAR FROM sale_date) AS year, EXTRACT(MONTH FROM sale_date) AS month, AVG(total_sale) AS avg_sale
+FROM retail_sales
+GROUP BY year, month;
+
+```
+
+**Output**
+
+<img width="555" height="83" alt="image" src="https://github.com/user-attachments/assets/c0a2889c-b926-480b-92a7-9ed66cab52ad" />
+
+
+---
+## Query 10: Top 5 Customers by Total Sales
+
+**SQL Query**
+
+```sql
+SELECT customer_id, SUM(total_sale) AS total_sale
 FROM retail_sales
 GROUP BY customer_id
-ORDER BY total_sales DESC
+ORDER BY total_sale DESC
 LIMIT 5;
+
 ```
 
 **Output**
 
-![Query 8 Output](screenshots/query8_output.png)
+<img width="618" height="75" alt="image" src="https://github.com/user-attachments/assets/37205ea6-5f88-49d7-9ae4-3907813f3786" />
 
----
-
-## Query 9: Best Selling Category
+---## Query 11: Best-Selling Category
 
 **SQL Query**
+
 ```sql
-SELECT
-category,
-SUM(quantity) AS total_quantity
+SELECT category, COUNT(DISTINCT customer_id) AS uniq_cust
 FROM retail_sales
-GROUP BY category
-ORDER BY total_quantity DESC;
+GROUP BY category;
+
 ```
 
 **Output**
 
-![Query 9 Output](screenshots/query9_output.png)
+<img width="449" height="77" alt="image" src="https://github.com/user-attachments/assets/4f1ba77f-8894-4685-917b-0afb862bf241" />
 
----
+
+---## Query 12: create each shift and number of orders
+
+**SQL Query**
+
+```sql
+SELECT CASE 
+WHEN HOUR(sale_time) < 12 THEN 'Morning’ 
+WHEN HOUR(sale_time) BETWEEN 12 AND 17 THEN 'Afternoon’ 
+ELSE 'Evening’
+END AS Shift,
+COUNT(*) AS num_of_orders
+FROM retail_sales
+GROUP BY Shift;
+
+```
+
+**Output**
+
+<img width="769" height="77" alt="image" src="https://github.com/user-attachments/assets/31c1f134-ad1c-4b50-9b22-875badfc267d" />
 
 ---
 
